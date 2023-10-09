@@ -1,24 +1,61 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  Flex,
+  Heading,
+  VStack,
+  useColorMode,
+  IconButton,
+  Link,
+  Spacer,
+} from "@chakra-ui/react";
+import {
+  FaSun,
+  FaMoon,
+  FaInstagram,
+  FaGithub,
+  FaLinkedin,
+} from "react-icons/fa";
+import Header from "./components/Header";
+import Social from "./components/Social";
+import Profile from "./components/Profile";
 
 function App() {
+  const { colorMode, toggleColorMode } = useColorMode();
+  const isDark = colorMode === "dark";
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <VStack p={5}>
+      <Flex w="100%">
+        <Heading ml="8" size="md" fontWeight="semibold" color="cyan.500">
+          React-Chakra UI
+        </Heading>
+
+        <Spacer></Spacer>
+        <Link
+          href="https://www.linkedin.com/in/anatoliy-trizna-451340287/"
+          isExternal
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <IconButton ml={2} icon={<FaLinkedin />} isRound="true"></IconButton>
+        </Link>
+        <Link href="https://www.instagram.com/saviour198928/" isExternal>
+          <IconButton ml={2} icon={<FaInstagram />} isRound="true"></IconButton>
+        </Link>
+        <Link
+          href="https://github.com/GreatCode1989?tab=repositories"
+          isExternal
+        >
+          <IconButton ml={2} icon={<FaGithub />} isRound="true"></IconButton>
+        </Link>
+        <IconButton
+          ml={8}
+          icon={isDark ? <FaSun /> : <FaMoon />}
+          isRound="true"
+          onClick={toggleColorMode}
+        ></IconButton>
+      </Flex>
+      <Header></Header>
+      <Social></Social>
+      <Profile></Profile>
+    </VStack>
   );
 }
 
